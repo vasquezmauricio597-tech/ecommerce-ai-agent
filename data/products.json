@@ -1,0 +1,62 @@
+[
+  {
+    "id": "PROD-001",
+    "name": "Laptop ProX 15",
+    "category": "Laptops",
+    "price": 1200.0,
+    "stock": 15,
+    "description": "Laptop de alto rendimiento equipada con procesador Intel i7 de última generación.",
+    "tags": [
+      "desarrollo",
+      "diseño"
+    ]
+  },
+  {
+    "id": "PROD-002",
+    "name": "Silla Ergonómica TechFlex",
+    "category": "Mobiliario",
+    "price": 350.0,
+    "stock": 8,
+    "description": "Silla de oficina ergonómica con soporte lumbar.",
+    "tags": [
+      "ergonomía",
+      "oficina"
+    ]
+  },
+  {
+    "id": "PROD-003",
+    "name": "Audífonos NoiseCancel GX",
+    "category": "Audio",
+    "price": 220.0,
+    "stock": 25,
+    "description": "Audífonos inalámbricos over-ear con ANC.",
+    "tags": [
+      "audio",
+      "remoto"
+    ]
+  },
+  {
+    "id": "PROD-004",
+    "name": "Monitor UltraWide 34",
+    "category": "Monitores",
+    "price": 550.0,
+    "stock": 5,
+    "description": "Monitor curvo 34 pulgadas QHD de 144Hz.",
+    "tags": [
+      "pantalla",
+      "multitarea"
+    ]
+  },
+  {
+    "id": "PROD-005",
+    "name": "Teclado Mecánico Silent",
+    "category": "Periféricos",
+    "price": 130.0,
+    "stock": 30,
+    "description": "Teclado mecánico inalámbrico al 75%.",
+    "tags": [
+      "teclado",
+      "silencioso"
+    ]
+  }
+]
