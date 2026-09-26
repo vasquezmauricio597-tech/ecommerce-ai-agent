@@ -1,113 +1,117 @@
-# E-commerce AI Agent
+E-commerce AI Agent
+Intelligent e-commerce agent built with Python, FastAPI, Gemini, and SQLite.
 
-Agente inteligente de e-commerce construido con Python, FastAPI, Gemini y SQLite.
+The project combines a conversational agent with business tools to query products, manage a shopping cart, and execute a transactional checkout.
 
-El proyecto combina un agente conversacional con herramientas de negocio para consultar productos, gestionar un carrito de compras y ejecutar un checkout transaccional.
+The goal is to demonstrate the construction of a backend application with AI integration, data persistence, business logic, agent tools, conversational sessions, and automated testing.
 
-El objetivo es demostrar la construcción de una aplicación backend con integración de IA, persistencia de datos, lógica de negocio, herramientas para agentes, sesiones conversacionales y pruebas automatizadas.
+🚀 Key Features
+🤖 Conversational agent powered by Gemini
 
----
+🔎 Tool-based product search
 
-## 🚀 Características principales
+🛒 Complete cart management
 
-- 🤖 Agente conversacional basado en Gemini
-- 🔎 Búsqueda de productos mediante herramientas
-- 🛒 Gestión completa del carrito
-- 📦 Control de stock
-- 💳 Checkout transaccional
-- 🧾 Creación y consulta de órdenes
-- 💾 Persistencia con SQLite
-- 🧠 Sesiones conversacionales
-- 🔧 Herramientas especializadas para el agente
-- 🌐 API REST con FastAPI
-- 📊 Métricas de llamadas a Gemini y herramientas
-- 🧪 Suite de pruebas automatizadas
-- 🔒 Validaciones de datos y reglas de negocio
-- ⚡ Optimización para evitar llamadas innecesarias al modelo
+📦 Stock control
 
----
+💳 Transactional checkout
 
-# 🏗️ Arquitectura
+🧾 Order creation and querying
 
-La aplicación está organizada por responsabilidades:
+💾 Data persistence with SQLite
 
-```text
-                         ┌──────────────────────┐
-                         │       Cliente        │
-                         │  CLI / HTTP / Docs   │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │       FastAPI        │
-                         │      REST API        │
-                         └──────────┬───────────┘
-                                    │
-                    ┌───────────────┴───────────────┐
-                    │                               │
-                    ▼                               ▼
-          ┌──────────────────┐             ┌──────────────────┐
-          │   AI Agent       │             │  Business API    │
-          │                  │             │                  │
-          │     Gemini       │             │ Cart / Checkout  │
-          │       +          │             │ Orders           │
-          │     Tools        │             │                  │
-          └────────┬─────────┘             └────────┬─────────┘
-                   │                                │
-                   ▼                                ▼
-          ┌──────────────────┐             ┌──────────────────┐
-          │ CatalogService   │             │   CartService    │
-          │                  │             │                  │
-          │ Product search   │             │ Cart operations  │
-          │ Product lookup   │             │ Validation       │
-          │ Stock            │             │ Persistence      │
-          └────────┬─────────┘             └────────┬─────────┘
-                   │                                │
-                   └───────────────┬────────────────┘
+🧠 Conversational sessions
+
+🔧 Specialized tools for the agent
+
+🌐 REST API with FastAPI
+
+📊 Metrics for Gemini and tool calls
+
+🧪 Automated test suite
+
+🔒 Data validations and business rules
+
+⚡ Optimization to avoid unnecessary model calls
+
+🏗️ Architecture
+The application is organized by responsibilities:
+┌──────────────────────┐
+                        │        Client        │
+                        │   CLI / HTTP / Docs  │
+                        └──────────┬───────────┘
                                    │
                                    ▼
-                         ┌──────────────────────┐
-                         │    CheckoutService   │
-                         │                      │
-                         │ Transaction          │
-                         │ Stock update         │
-                         │ Order creation       │
-                         │ Cart cleanup         │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │       SQLite         │
-                         │                      │
-                         │ products             │
-                         │ carts                │
-                         │ cart_items            │
-                         │ orders               │
-                         │ order_items           │
-                         └──────────────────────┘
-                         ┘
-🧩 Componentes principales
+                        ┌──────────────────────┐
+                        │       FastAPI        │
+                        │       REST API       │
+                        └──────────┬───────────┘
+                                   │
+                    ┌──────────────┴───────────────┐
+                    │                              │
+                    ▼                              ▼
+             ┌──────────────────┐           ┌──────────────────┐
+             │    AI Agent      │           │   Business API   │
+             │                  │           │                  │
+             │      Gemini      │           │ Cart / Checkout  │
+             │        +         │           │ Orders           │
+             │      Tools       │           │                  │
+             └────────┬─────────┘           └────────┬─────────┘
+                      │                              │
+                      ▼                              ▼
+             ┌──────────────────┐           ┌──────────────────┐
+             │  CatalogService  │           │   CartService    │
+             │                  │           │                  │
+             │ Product search   │           │ Cart operations  │
+             │ Product lookup   │           │ Validation       │
+             │ Stock            │           │ Persistence      │
+             └────────┬─────────┘           └────────┬─────────┘
+                      │                              │
+                      └──────────────┬───────────────┘
+                                     │
+                                     ▼
+                        ┌──────────────────────┐
+                        │   CheckoutService    │
+                        │                      │
+                        │ Transaction          │
+                        │ Stock update         │
+                        │ Order creation       │
+                        │ Cart cleanup         │
+                        └──────────┬───────────┘
+                                   │
+                                   ▼
+                        ┌──────────────────────┐
+                        │        SQLite        │
+                        │                      │
+                        │ products             │
+                        │ carts                │
+                        │ cart_items           │
+                        │ orders               │
+                        │ order_items          │
+                        └──────────────────────┘
+                        ┘
+🧩 Main Components
 AI Agent
 
-El agente utiliza Gemini para interpretar las solicitudes del usuario y decidir cuándo necesita utilizar herramientas del sistema.
+The agent uses Gemini to interpret user requests and decide when it needs to use system tools.
 
-Las herramientas disponibles incluyen:
+Available tools include:
 
-búsqueda de productos
-consulta de stock
-agregar productos al carrito
-consultar carrito
-actualizar cantidades
-eliminar productos
-ejecutar checkout
+product search
+stock inquiry
+add products to cart
+view cart
+update quantities
+remove products
+execute checkout
 
-Esto permite separar la capacidad de razonamiento del modelo de la lógica de negocio de la aplicación.
+This separates the model's reasoning capability from the application's business logic.
 
-El modelo no modifica directamente la base de datos.
+The model does not modify the database directly.
 
-En su lugar:
+Instead:
 
-Usuario
+User
    │
    ▼
 Gemini
@@ -123,162 +127,162 @@ Repository
    │
    ▼
 SQLite
-🔎 Catálogo de productos
+🔎 Product Catalog
 
-El catálogo se encuentra en:
+The catalog is located at:
 
 data/products.json
 
-Los productos contienen información como:
+Products contain information such as:
 
 ID
-nombre
-categoría
-precio
+name
+category
+price
 stock
-descripción
+description
 tags
 
-El catálogo se carga inicialmente en SQLite.
+The catalog is initially loaded into SQLite.
 
-La aplicación dispone de un CatalogService encargado de centralizar las operaciones relacionadas con productos.
+The application includes a CatalogService responsible for centralizing product-related operations.
 
-Entre sus responsabilidades:
+Its responsibilities include:
 
-obtener productos
-buscar productos
-consultar productos por ID
-consultar stock
-disminuir stock
-aumentar stock
-🛒 Carrito de compras
+get products
+search products
+query products by ID
+check stock
+decrease stock
+increase stock
+🛒 Shopping Cart
 
-El CartService administra el estado persistente del carrito.
+The CartService manages the persistent state of the shopping cart.
 
-Cada carrito está asociado a un:
+Each cart is associated with a:
 
 session_id
 
-Esto permite mantener carritos independientes entre diferentes sesiones.
+This allows maintaining independent carts across different sessions.
 
-Operaciones disponibles:
+Available operations:
 
-Agregar producto
-       │
-       ▼
-Actualizar cantidad
-       │
-       ▼
-Consultar carrito
-       │
-       ├── Eliminar producto
-       │
-       └── Vaciar carrito
+Add product
+        │
+        ▼
+Update quantity
+        │
+        ▼
+View cart
+        │
+        ├── Remove product
+        │
+        └── Clear cart
 
-También se validan reglas como:
+Rules validated include:
 
-session_id obligatorio
-product_id válido
-cantidad positiva
-producto existente
-cantidad solicitada dentro del stock disponible
-📦 Control de stock
+mandatory session_id
+valid product_id
+positive quantity
+existing product
+requested quantity within available stock
+📦 Stock Control
 
-El stock forma parte del estado persistente de cada producto.
+Stock is part of the persistent state of each product.
 
-Antes de agregar productos al carrito se valida la cantidad disponible.
+Available quantity is validated before adding products to the cart.
 
-Durante el checkout se vuelve a comprobar el stock dentro de una transacción.
+Stock is checked again inside a transaction during checkout.
 
-Esto evita confiar únicamente en la validación realizada anteriormente en el carrito.
+This avoids relying solely on the previous validation performed in the cart.
 
-Flujo:
+Flow:
 
-Carrito
+Cart
    │
    ▼
 Checkout
    │
    ▼
-Comprobar stock
+Check stock
    │
-   ├── Insuficiente → rollback
+   ├── Insufficient → rollback
    │
-   └── Disponible
-          │
-          ▼
-     Crear orden
-          │
-          ▼
-    Disminuir stock
-          │
-          ▼
-      Vaciar carrito
-💳 Checkout transaccional
+   └── Available
+         │
+         ▼
+     Create order
+         │
+         ▼
+     Decrease stock
+         │
+         ▼
+      Clear cart
+💳 Transactional Checkout
 
-El CheckoutService procesa la compra utilizando una transacción SQLite.
+The CheckoutService processes the purchase using a SQLite transaction.
 
-Durante el checkout:
+During checkout:
 
-Obtiene los productos del carrito.
-Verifica que el carrito no esté vacío.
-Comprueba que los productos existan.
-Verifica nuevamente el stock.
-Calcula el total.
-Crea la orden.
-Crea las líneas de la orden.
-Disminuye el stock.
-Vacía el carrito.
-Confirma la transacción.
+Gets the products from the cart.
+Verifies that the cart is not empty.
+Checks that the products exist.
+Verifies stock again.
+Calculates the total.
+Creates the order.
+Creates order items.
+Decreases the stock.
+Clears the cart.
+Commits the transaction.
 
-Si ocurre un error durante el proceso, la transacción realiza rollback.
+If an error occurs during the process, the transaction rolls back.
 
-Esto mantiene consistentes:
+This maintains consistency across:
 
-Carrito
+Cart
 Stock
-Orden
+Order
 Order Items
-🧠 Sesiones y memoria
+🧠 Sessions and Memory
 
-Las conversaciones utilizan un session_id.
+Conversations use a session_id.
 
-La API mantiene el historial conversacional asociado a cada sesión:
+The API maintains the conversational history associated with each session:
 
 session_id
      │
      ▼
 chat history
      │
-     ├── mensaje 1
-     ├── respuesta 1
-     ├── mensaje 2
-     └── respuesta 2
+     ├── message 1
+     ├── response 1
+     ├── message 2
+     └── response 2
 
-Además, el mismo session_id puede utilizarse para relacionar la conversación con el carrito y las órdenes.
+Additionally, the same session_id can be used to link the conversation with the cart and orders.
 
-Esto permite que una interacción pueda evolucionar desde:
+This allows an interaction to evolve from:
 
-"Busco audífonos"
+"I'm looking for headphones"
         ↓
-"agrégalos al carrito"
+"add them to the cart"
         ↓
-"muéstrame mi carrito"
+"show me my cart"
         ↓
-"comprar"
-🌐 API REST
+"checkout"
+🌐 REST API
 
-La aplicación utiliza FastAPI.
+The application uses FastAPI.
 
-Endpoint raíz
+Root Endpoint
 GET /
 
-Comprueba que la API esté funcionando.
+Verifies that the API is running.
 
-Health check
+Health Check
 GET /health
 
-Respuesta:
+Response:
 
 {
   "status": "healthy"
@@ -286,14 +290,14 @@ Respuesta:
 Chat
 POST /chat
 
-Ejemplo:
+Example:
 
 {
   "session_id": "demo-session",
-  "message": "Busco audífonos inalámbricos"
+  "message": "I'm looking for wireless headphones"
 }
 
-La respuesta incluye:
+The response includes:
 
 {
   "session_id": "demo-session",
@@ -302,12 +306,12 @@ La respuesta incluye:
   "tool_calls": 1
 }
 
-Las métricas permiten observar cuánto trabajo realizó el modelo frente a las herramientas locales.
+Metrics allow observing how much work the model performed versus local tools.
 
-🛒 Endpoints del carrito
-Obtener carrito
+🛒 Cart Endpoints
+Get cart
 GET /cart/{session_id}
-Agregar producto
+Add product
 POST /cart/{session_id}/items
 
 Body:
@@ -316,7 +320,7 @@ Body:
   "product_id": "PROD-003",
   "quantity": 1
 }
-Actualizar cantidad
+Update quantity
 PUT /cart/{session_id}/items/{product_id}
 
 Body:
@@ -324,26 +328,26 @@ Body:
 {
   "quantity": 2
 }
-Eliminar producto
+Remove product
 DELETE /cart/{session_id}/items/{product_id}
-Vaciar carrito
+Clear cart
 DELETE /cart/{session_id}
-💳 Endpoints de checkout
-Crear orden
+💳 Checkout Endpoints
+Create order
 POST /checkout/{session_id}
-Obtener orden
+Get order
 GET /orders/{order_id}
-Obtener órdenes de una sesión
+Get orders for a session
 GET /orders/session/{session_id}
-🗄️ Persistencia
+🗄️ Persistence
 
-La aplicación utiliza SQLite.
+The application uses SQLite.
 
-Base de datos:
+Database:
 
 data/ecommerce.db
 
-Esquema principal:
+Main schema:
 
 products
    │
@@ -381,9 +385,9 @@ order_items
     ├── quantity
     └── subtotal
 
-La aplicación utiliza repositories para separar el acceso a datos de la lógica de negocio.
+The application uses repositories to separate data access from business logic.
 
-📁 Estructura del proyecto
+📁 Project Structure
 ecommerce-ai-agent/
 │
 ├── app/
@@ -432,220 +436,220 @@ ecommerce-ai-agent/
 └── README.md
 🧪 Testing
 
-El proyecto cuenta con una suite automatizada de pruebas.
+The project features an automated test suite.
 
-Última ejecución validada:
+Last validated run:
 
 61 passed, 3 warnings
 
-Tiempo aproximado:
+Approximate time:
 
 14.57s
 
-Las pruebas cubren diferentes capas de la aplicación.
+Tests cover different layers of the application.
 
-Catálogo
-consulta de productos
-búsqueda
+Catalog
+product lookup
+search
 stock
-productos inexistentes
-Carrito
-agregar productos
-agregar repetidamente
-actualizar cantidades
-eliminar productos
-vaciar carrito
-cálculo del subtotal
-persistencia
-validaciones
+non-existent products
+Cart
+add products
+add repeatedly
+update quantities
+remove products
+clear cart
+subtotal calculation
+persistence
+validations
 Checkout
-creación de órdenes
-cálculo del total
-actualización de stock
-vaciado del carrito
-carrito vacío
-stock insuficiente
-productos inexistentes
-cantidades inválidas
+order creation
+total calculation
+stock update
+cart clearing
+empty cart
+insufficient stock
+non-existent products
+invalid quantities
 API
 endpoints
-sesiones
+sessions
 chat
-carrito
+cart
 checkout
-órdenes
-validaciones HTTP
-Agente
-uso de herramientas
-búsqueda local
-llamadas al modelo
-métricas
-integración entre agente y servicios
-📊 Optimización de llamadas al modelo
+orders
+HTTP validations
+Agent
+tool usage
+local search
+model calls
+metrics
+integration between agent and services
+📊 Model Call Optimization
 
-Una de las decisiones del proyecto es evitar utilizar Gemini cuando una operación puede resolverse localmente.
+One of the project's design decisions is to avoid using Gemini when an operation can be resolved locally.
 
-Por ejemplo, una búsqueda directa de productos puede resolverse mediante el catálogo sin necesidad de enviar una solicitud al modelo.
+For instance, a direct product search can be handled via the catalog without sending a request to the model.
 
-Esto permite:
+This allows:
 
-Solicitud del usuario
+User request
         │
         ▼
-¿Puede resolverse localmente?
+Can it be resolved locally?
         │
     ┌───┴───┐
-   Sí       No
-    │        │
-    ▼        ▼
-  Tool     Gemini
- local       │
-             ▼
-           Tools
+   Yes      No
+    │       │
+    ▼       ▼
+Local     Gemini
+Tool        │
+            ▼
+          Tools
 
-La API expone métricas por solicitud:
+The API exposes metrics per request:
 
 {
   "gemini_calls": 0,
   "tool_calls": 1
 }
 
-Estas métricas permiten observar el comportamiento del sistema y sirven como base para futuras optimizaciones de costo y latencia.
+These metrics allow observing system behavior and serve as a baseline for future cost and latency optimizations.
 
-⚙️ Instalación
-1. Clonar el repositorio
-git clone <URL_DEL_REPOSITORIO>
+⚙️ Installation
+1. Clone the repository
+git clone <REPOSITORY_URL>
 cd ecommerce-ai-agent
-2. Crear entorno virtual
+2. Create virtual environment
 
-En Windows PowerShell:
+In Windows PowerShell:
 
 python -m venv .venv
 
-Activar:
+Activate:
 
 .\.venv\Scripts\Activate.ps1
-3. Instalar dependencias
+3. Install dependencies
 pip install -r requirements.txt
-4. Configurar variables de entorno
+4. Configure environment variables
 
-Crear un archivo:
+Create a file:
 
 .env
 
-con la API key de Gemini:
+with your Gemini API key:
 
-GOOGLE_API_KEY=tu_api_key
-▶️ Ejecutar la API
+GOOGLE_API_KEY=your_api_key
+▶️ Running the API
 
-Desde la raíz del proyecto:
+From the project root:
 
 uvicorn app.api.main:app --reload
 
-La API estará disponible en:
+The API will be available at:
 
 http://127.0.0.1:8000
 
-La documentación interactiva de FastAPI está disponible en:
+FastAPI interactive documentation is available at:
 
 http://127.0.0.1:8000/docs
 
-También se puede consultar:
+You can also check:
 
 http://127.0.0.1:8000/redoc
-💬 Ejecutar el agente desde consola
+💬 Running the Agent from Console
 
-El agente puede ejecutarse directamente mediante:
+The agent can be run directly via:
 
 python -m app.agent.agent
 
-El flujo permite interactuar con el agente desde la terminal.
+The flow allows interacting with the agent from the terminal.
 
-Ejemplo:
+Example:
 
 E-COMMERCE AI AGENT
 
-Usuario: busco audífonos inalámbricos con cancelación de ruido
+User: looking for noise-canceling wireless headphones
 
-Asistente:
+Assistant:
 ...
 
-Para finalizar:
+To exit:
 
-salir
-🔬 Ejemplo de flujo completo
+salir (or exit)
+🔬 Complete Flow Example
 
-Una interacción típica puede seguir este flujo:
+A typical interaction follows this flow:
 
-Usuario
-  │
-  │ "Busco audífonos inalámbricos"
-  ▼
+User
+ │
+ │ "I'm looking for wireless headphones"
+ ▼
 Agent
-  │
-  ▼
+ │
+ ▼
 search_products_catalog
-  │
-  ▼
+ │
+ ▼
 CatalogService
-  │
-  ▼
-Producto encontrado
-  │
-  │
-  ▼
-Usuario
-  │
-  │ "Agrégalos al carrito"
-  ▼
+ │
+ ▼
+Product found
+ │
+ │
+ ▼
+User
+ │
+ │ "Add them to the cart"
+ ▼
 add_product_to_cart
-  │
-  ▼
+ │
+ ▼
 CartService
-  │
-  ▼
+ │
+ ▼
 SQLite
-  │
-  ▼
-Carrito actualizado
-  │
-  │
-  ▼
-Usuario
-  │
-  │ "Comprar"
-  ▼
+ │
+ ▼
+Cart updated
+ │
+ │
+ ▼
+User
+ │
+ │ "Checkout"
+ ▼
 checkout_cart
-  │
-  ▼
+ │
+ ▼
 CheckoutService
-  │
-  ├── validar stock
-  ├── crear orden
-  ├── actualizar stock
-  └── vaciar carrito
+ │
+ ├── validate stock
+ ├── create order
+ ├── update stock
+ └── clear cart
         │
         ▼
-      SQLite
-🛡️ Manejo de errores
+     SQLite
+🛡️ Error Handling
 
-La aplicación valida errores tanto en la capa de negocio como en la API.
+The application validates errors at both the business logic and API layers.
 
-Algunos casos contemplados:
+Handled cases include:
 
-sesión vacía
-producto inexistente
-cantidad inválida
-stock insuficiente
-carrito vacío
-orden inexistente
-producto inexistente durante checkout
+empty session
+non-existent product
+invalid quantity
+insufficient stock
+empty cart
+non-existent order
+non-existent product during checkout
 
-Los errores de negocio se convierten en respuestas HTTP apropiadas cuando se accede mediante FastAPI.
+Business errors translate into appropriate HTTP responses when accessed via FastAPI.
 
-🧱 Principios de diseño
+🧱 Design Principles
 
-El proyecto busca mantener responsabilidades separadas:
+The project seeks to maintain separated responsibilities:
 
 API
  │
@@ -658,7 +662,7 @@ Repositories
  ▼
 Database
 
-Mientras que el agente se integra mediante herramientas:
+While the agent integrates via tools:
 
 Agent
  │
@@ -670,81 +674,81 @@ Agent
  ├── remove_product_from_cart
  └── checkout_cart
 
-Esto permite evolucionar cada parte del sistema de manera independiente.
+This allows each part of the system to evolve independently.
 
-🛠️ Tecnologías
-Tecnología	Uso
-Python	Lenguaje principal
-FastAPI	API REST
-Pydantic	Validación de datos
-SQLite	Persistencia
-Gemini	Modelo de lenguaje
-LangChain	Integración del agente y herramientas
-ChromaDB	Infraestructura de búsqueda vectorial
+🛠️ Technologies
+Technology	Usage
+Python	Main language
+FastAPI	REST API
+Pydantic	Data validation
+SQLite	Persistence
+Gemini	Language model
+LangChain	Agent and tool integration
+ChromaDB	Vector search infrastructure
 Pytest	Testing
-Uvicorn	Servidor ASGI
-📈 Próximas mejoras
+Uvicorn	ASGI server
+📈 Upcoming Improvements
 
-Algunas mejoras previstas para futuras versiones:
+Planned enhancements for future versions:
 
-persistencia de memoria conversacional
-autenticación de usuarios
-integración con un sistema de pagos
-PostgreSQL para producción
-Redis para sesiones/cache
-observabilidad avanzada
-métricas de latencia
-tracing distribuido
+conversational memory persistence
+user authentication
+payment gateway integration
+PostgreSQL for production
+Redis for sessions/cache
+advanced observability
+latency metrics
+distributed tracing
 Docker
-despliegue cloud
-workers asíncronos
-evaluación sistemática de respuestas del agente
+cloud deployment
+asynchronous workers
+systematic evaluation of agent responses
 
-Estas mejoras forman parte de una posible evolución del proyecto hacia una arquitectura de producción.
+These improvements are part of a potential evolution of the project toward a production architecture.
 
-🎯 Objetivo del proyecto
+🎯 Project Goal
 
-Este proyecto fue construido como una demostración de ingeniería backend aplicada a sistemas con IA.
+This project was built as a demonstration of backend engineering applied to AI-driven systems.
 
-Más allá de integrar un LLM, el objetivo es demostrar:
+Beyond integrating an LLM, the objective is to demonstrate:
 
-diseño modular
-separación de responsabilidades
-integración de herramientas con agentes
-persistencia de datos
-transacciones
-control de stock
-APIs REST
-validación
-testing automatizado
-optimización de llamadas a modelos
-observabilidad básica
-integración entre IA y lógica de negocio
+modular design
+separation of responsibilities
+tool integration with agents
+data persistence
+transactions
+stock control
+REST APIs
+validation
+automated testing
+model call optimization
+basic observability
+integration between AI and business logic
 
-La IA es una parte del sistema, no el sistema completo.
+AI is a part of the system, not the entire system.
 
-📌 Estado actual
-[✓] Catálogo
+📌 Current Status
+[✓] Catalog
 [✓] SQLite
 [✓] Repository pattern
-[✓] Búsqueda de productos
-[✓] Agente IA
+[✓] Product search
+[✓] AI Agent
 [✓] Tools
-[✓] Carrito
-[✓] Control de stock
+[✓] Cart
+[✓] Stock control
 [✓] Checkout
-[✓] Órdenes
-[✓] Sesiones
+[✓] Orders
+[✓] Sessions
 [✓] FastAPI
-[✓] Manejo de errores
-[✓] Tests automatizados
-[✓] Métricas básicas
-[✓] Optimización de llamadas
-[ ] Documentación avanzada
+[✓] Error handling
+[✓] Automated tests
+[✓] Basic metrics
+[✓] Call optimization
+[ ] Advanced documentation
 [ ] Deployment
-[ ] Observabilidad avanzada
-👨‍💻 Proyecto de portafolio
+[ ] Advanced observability
+👨‍💻 Portfolio Project
 
-Proyecto desarrollado para demostrar capacidades de ingeniería de software backend y desarrollo de aplicaciones basadas en IA.
+Project developed to demonstrate software backend engineering capabilities and AI-driven application development.
 
-El foco está en construir un sistema funcional de extremo a extremo, con lógica de negocio real, persistencia, pruebas e integración de un agente de IA con herramientas externas.
+The focus is on building a functional end-to-end system with real business logic, persistence, testing, and the integration of an AI agent with external tools.
