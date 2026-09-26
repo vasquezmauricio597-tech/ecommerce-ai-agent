@@ -36,7 +36,9 @@ The goal is to demonstrate the construction of a backend application with AI int
 
 🏗️ Architecture
 The application is organized by responsibilities:
-┌──────────────────────┐
+
+Plaintext
+                        ┌──────────────────────┐
                         │        Client        │
                         │   CLI / HTTP / Docs  │
                         └──────────┬───────────┘
